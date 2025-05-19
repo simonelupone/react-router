@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import MainNavbar from "../components/MainNavbar.jsx";
+import { NavLink } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState(null);
@@ -28,29 +29,33 @@ const Products = () => {
                 key={product.id}
                 className="max-w-sm rounded overflow-hidden shadow-lg hover:scale-105  cursor-pointer"
               >
-                <div className="h-64 w-full">
-                  <img
-                    className="w-full h-full object-contain object-center"
-                    src={product.image}
-                    alt={product.title}
-                  />
-                </div>
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">{product.title}</div>
-                  <p className="text-gray-700 text-base">
-                    {product.description}
-                  </p>
-                </div>
-                <div className="px-6 pt-4 pb-2">
-                  <div>
-                    <span className="font-semibold">Birthday:</span>{" "}
-                    {product.category}
+                <NavLink to={`/products/${product.id}`}>
+                  <div className="h-64 w-full">
+                    <img
+                      className="w-full h-full object-contain object-center"
+                      src={product.image}
+                      alt={product.title}
+                    />
                   </div>
-                  <div>
-                    <span className="font-semibold">Nationality:</span>{" "}
-                    {product.price}
+                  <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2">
+                      {product.title}
+                    </div>
+                    <p className="text-gray-700 text-base">
+                      {product.description}
+                    </p>
                   </div>
-                </div>
+                  <div className="px-6 pt-4 pb-2">
+                    <div>
+                      <span className="font-semibold">Category:</span>{" "}
+                      {product.category}
+                    </div>
+                    <div>
+                      <span className="font-semibold">Price:</span>{" "}
+                      {product.price}
+                    </div>
+                  </div>
+                </NavLink>
               </div>
             ))}
           </div>
